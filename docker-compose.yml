@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://backend:5000        # 👈 use backend service name (not localhost)
+    command: sh -c "npm install && npm run dev -- --host"
+    user: root
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - finance_network                         # 👈 added network
+
+  backend:
+    build:
+      context: ./backend
+      target: base
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev"
+    user: root
+    depends_on:
+      - mongo
+    networks:
+      - finance_network                       
+
+  mongo:
+    image: mongo:7
+    container_name: finance_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=finance_db
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=submission
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - finance_network                     
+
+volumes:
+  mongo_data:
+
+# 👇 Define shared network
+networks:
+  finance_network:
+    driver: bridge

@@ -1,0 +1,39 @@
+{
+  "include": ["src", "shared"],
+  "exclude": ["node_modules", "build", "dist", "**/*.test.ts", "**/*.test.tsx"],
+  "compilerOptions": {
+    /* Output */
+    "noEmit": true,
+
+    /* Language & Type Safety */
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    /* Module Resolution */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    /* Libraries */
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+    /* Paths / Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@redux/*": ["src/redux/*"],
+      "@types/*": ["src/types"]
+    },
+
+    /* Type Declarations */
+    "types": ["vite/client"]
+  }
+}
