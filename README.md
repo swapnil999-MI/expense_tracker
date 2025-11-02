@@ -116,6 +116,7 @@ docker compose -f docker-compose.yml up -d --build
 - `.env` file is used **when running manually (without Docker)**
 
 This means:
+- .env files are directly pushed to avoid any manual setup and pass atlas db url
 - When you run `docker compose -f docker-compose.yml up -d --build`, the system automatically uses the variables from `.env.development`.
 - When you run using Node.js directly (`npm start` or `npx nodemon`), it uses `.env`.
 
