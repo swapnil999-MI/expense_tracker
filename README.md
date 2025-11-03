@@ -157,9 +157,7 @@ This means:
 
 **Name:** Swapnil Jagadale  
 **Role:** Full Stack Developer  
-**Email:** your.email@example.com  
-**GitHub:** https://github.com/yourusername
-
+**Email:** swapniljagadale999@gmail.com 
 ---
 
 ## 🪪 License
